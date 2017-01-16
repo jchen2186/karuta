@@ -9,7 +9,7 @@ line = infile.readline()
 while line:
     if (line != "\n"):
 
-        outfile.write(line.strip() + "\n")
+        outfile.write(line.strip() + "<br>\n")
     line = infile.readline()
 
 infile.close()
