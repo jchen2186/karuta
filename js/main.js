@@ -13,7 +13,38 @@ Promise.all(promises).then(function(values) {
 	createTiles(values);
 })
 
-function createTiles(data, activeTab = "日本語") {
+function getChosenLanguage() {
+	let languageOptions = d3.selectAll(".poem-language-option")._groups[0];
+	let options = {};
+
+	for (let i = 0; i < languageOptions.length; i++) {
+		let el = languageOptions[i];
+		if (el.checked) {
+			options[el.name] = el.value;
+		}
+	}
+	console.log(options);
+	return options;
+}
+
+function createTiles(data) {
+	updateTiles(data)
+
+	// Update a card when a tab is clicked on
+	d3.selectAll(".poem-type")
+		.on("click", function() {
+			switchPoemType(data, this)
+		})
+
+	// Update all of the cards when the language option changes
+	d3.selectAll(".poem-language-option")
+		.on("change", function() {
+			updateTiles(data)
+		});
+}
+
+function updateTiles(data) {
+	let activeTab = getChosenLanguage()["poem-type"];
 	let index = ["日本語", "Romaji", "English"].indexOf(activeTab);
 	let filteredData = data[index];
 
@@ -21,27 +52,21 @@ function createTiles(data, activeTab = "日本語") {
 	fillColumn(filteredData.slice(25, 50), 1);
 	fillColumn(filteredData.slice(50, 75), 2);
 	fillColumn(filteredData.slice(75), 3);
-
-	// Update a card when a tab is clicked on
-	d3.selectAll(".poem-type")
-		// .on("click", switchPoemType);
-		.on("click", function() {
-			switchPoemType(data, this)
-		})
 }
 
 function fillColumn(data, columnNumber) {
 	var col = d3.select(`#col${columnNumber}`);
+	let t = d3.transition().duration(300);
 
 	let cards = col.selectAll(".card")
 		.data(data)
 		.enter()
 		.append("div")
-			.attr("class", "tile is-child card has-text-centered")
+			.attr("class", "tile is-child card")
 			.attr("id", (d, i) => i + 25 * columnNumber);
-	
+
 	let tabs = cards.append("div")
-	.attr("class", "tabs is-toggle is-fullwidth")
+	.attr("class", "tabs is-boxed is-fullwidth")
 	.append("ul");
 
 	tabs.append("li")

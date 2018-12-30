@@ -15,22 +15,76 @@
 	<!-- D3.js -->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
 	
-	
 	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
 	<section id="top-section" class="hero is-dark">
 		<div class="hero-body">
 			<div class="container">
-				<h1 class="title">
-					Learning Karuta
+				<h1 class="title is-1">
+						小倉百人一首: Ogura Hyakunin Isshu
 				</h1>
+				<h3 class="subtitle is-3">
+					One Hundred People, One Poem Each
+				</h3>
 			</div>
 		</div>
 	</section>
 	
 	<section class="section">
-		<div id="poems-container" class="container">
+		<div id="options" class="container has-text-centered">
+			<div class="columns">
+				<div class="column is-offset-3 is-6">
+					<div class="box has-text-centered">
+						<h4 class="subtitle is-4">Choose Language to Display</h4>
+						<nav class="level">
+							<div class="level-item">
+								<label class="radio">
+									<input class="poem-language-option" type="radio" name="poem-type" value="日本語" checked>
+									日本語
+								</label>
+							</div>
+							<div class="level-item">
+								<label class="radio">
+									<input class="poem-language-option" type="radio" name="poem-type" value="Romaji">
+									Romaji
+								</label>
+							</div>
+							<div class="level-item">
+								<label class="radio">
+									<input class="poem-language-option" type="radio" name="poem-type" value="English">
+									English
+								</label>
+							</div>
+						</nav>
+					</div>
+					
+
+
+					<!-- <article class="message is-primary">
+						<div class="message-header">
+							<p>Choose Language</p>
+						</div>
+						<div class="message-body">
+							<label class="radio">
+								<input class="poem-type-option" type="radio" name="poem-type" value="日本語" checked>
+								日本語
+							</label>
+							<label class="radio">
+								<input class="poem-type-option" type="radio" name="poem-type" value="Romaji">
+								Romaji
+							</label>
+							<label class="radio">
+								<input class="poem-type-option" type="radio" name="poem-type" value="English">
+								English
+							</label>
+						</div>
+					</article> -->
+				</div>
+			</div>
+			
+		</div>
+		<div id="poems-container" class="container has-text-centered">
 			<div class="tile is-ancestor">
 				<div id="col0" class="tile is-vertical is-parent"></div>
 				<div id="col1" class="tile is-vertical is-parent"></div>
