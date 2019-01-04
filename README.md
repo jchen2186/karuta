@@ -3,3 +3,4 @@ A simple website that aims to familiarize someone with poems from the Hyakunin I
 
 ## Tools Used
 - D3.js
+- Bulma
